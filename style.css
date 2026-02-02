@@ -1480,6 +1480,19 @@ main {
     transform: translateY(20px);
 }
 
+.slide-in-right {
+    animation: slideInRight 1s ease-out forwards;
+    opacity: 0;
+    transform: translateX(50px);
+}
+
+@keyframes slideInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .fade-in-up.slow {
     animation-duration: 2s;
 }
