@@ -570,9 +570,23 @@ main {
 
 /* Hero Responsive */
 @media (max-width: 900px) {
+    .hero-wrapper {
+        min-height: calc(100vh - 70px);
+        /* Full height minus navbar */
+        display: flex;
+        flex-direction: column;
+    }
+
     .hero-section {
-        padding: 2rem 1.5rem 3rem 1.5rem;
+        padding: 1rem 1.5rem;
+        /* Reduced vertical padding */
         height: auto;
+        flex: 1;
+        /* Expand to fill available space */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* Center content vertically */
     }
 
     .hero-right.slide-in-right {
@@ -1340,6 +1354,10 @@ main {
 
     .hero-about {
         background-size: 60% 70%;
+    }
+
+    .md-name {
+        font-size: 1.5rem;
     }
 }
 
