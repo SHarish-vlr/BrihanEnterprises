@@ -826,6 +826,10 @@ main {
     .mobile-only {
         display: block;
     }
+
+    .block-img {
+        height: 30vh;
+    }
 }
 
 /* Quote Section */
@@ -3268,9 +3272,9 @@ main {
 @media (max-width: 900px) {
     .scroll-right .content-block {
         position: sticky;
-        top: 60px;
+        top: 30px;
         /* Adjust for mobile navbar height */
-        min-height: calc(100vh - 60px);
+        min-height: calc(100vh - 30px);
         background-color: var(--color-bg);
         /* Ensure it covers previous cards */
         box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.08);
