@@ -840,6 +840,14 @@ main {
     .mobile-only {
         display: block;
     }
+
+    p.block-desc {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 2.25rem;
+    }
 }
 
 /* Quote Section */
@@ -1160,6 +1168,49 @@ main {
 @media (max-width: 768px) {
     .portfolio-section {
         padding: 4rem 1.5rem;
+    }
+
+    /* Mobile Portfolio Carousel */
+    .portfolio-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 20px;
+        padding-bottom: 30px;
+        /* Space for scrollbar/swipe */
+        margin-right: -1.5rem;
+        /* Negate container padding to go full width */
+        padding-right: 1.5rem;
+        /* Add padding back for last card */
+        -webkit-overflow-scrolling: touch;
+        border: none;
+        /* Remove desktop border */
+    }
+
+    .portfolio-grid::-webkit-scrollbar {
+        display: none;
+        /* Optional: Hide scrollbar */
+    }
+
+    .portfolio-card {
+        flex: 0 0 85%;
+        /* Show 85% of card */
+        scroll-snap-align: center;
+        min-height: 350px;
+        border: 1px solid #eee;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        align-items: flex-start;
+        /* Align content to top/start */
+    }
+
+    .portfolio-card img {
+        max-width: 150px;
+        /* Constrain width */
+        height: auto;
+        object-fit: contain;
+        margin-bottom: 2rem;
+        align-self: center;
+        /* Center image specifically */
     }
 
     .section-heading {
@@ -2951,6 +3002,48 @@ main {
     background-color: #ffffff;
 }
 
+@media (max-width: 768px) {
+
+    /* Blog Tabs - Mobile Modern Look */
+    .blog-tabs {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+        gap: 10px;
+        /* Reduce gap for mobile */
+        margin-right: -20px;
+        /* Negate container padding */
+        padding-right: 20px;
+    }
+
+    .blog-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .blog-tab {
+        flex: 0 0 auto;
+        /* Don't shrink */
+        white-space: nowrap;
+        background-color: #f1f5f9;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #64748b;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+    }
+
+    .blog-tab.active {
+        background-color: var(--color-primary);
+        color: white;
+        box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+    }
+}
+
 /* Tabs */
 .blog-tabs {
     display: flex;
@@ -2973,9 +3066,10 @@ main {
 
 .blog-tab:hover,
 .blog-tab.active {
-    color: #818cf8;
+    color: var(--color-bg);
     /* Primary color */
     font-weight: 600;
+    padding: 10px;
 }
 
 /* Carousel Container */
