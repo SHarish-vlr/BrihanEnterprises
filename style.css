@@ -911,7 +911,7 @@ main {
 
 @media (max-width: 768px) {
     .hero-about {
-        min-height: calc(100vh - 70px);
+        min-height: calc(100vh - 60px);
         /* Fill the viewport minus navbar (Mobile) */
     }
 }
