@@ -157,7 +157,9 @@ main {
     .navbar {
         padding: 0.5rem 1rem;
         height: 70px;
-        position: relative;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
         /* Ensure absolute positioning works relative to this */
         justify-content: space-between;
         /* Ensure Toggle - Logo - Button alignment */
@@ -197,7 +199,7 @@ main {
 
     /* Mobile Menu Styling */
     .mobile-menu {
-        display: none;
+        /* display: none; Removed to allow transitions, controlled via visibility/opacity */
         position: absolute;
         top: 100%;
         /* Below navbar */
@@ -205,21 +207,56 @@ main {
         width: 100%;
         background-color: white;
         flex-direction: column;
-        align-items: center;
-        padding: 2rem 0;
+        padding: 2rem 1rem;
         gap: 1.5rem;
         border-bottom: 1px solid #eee;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         z-index: 1000;
+
+        /* Animation States - Hidden by Default */
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        display: flex;
+        /* Always display flex so layout is calculated */
     }
 
     .mobile-menu.active {
-        display: flex;
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .mobile-menu .nav-link {
         font-size: 1rem;
         padding: 0.5rem;
+        opacity: 0;
+        /* Hidden initially for staggered animation */
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Staggered Animation Delay for Active State */
+    .mobile-menu.active .nav-link {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .mobile-menu.active .nav-link:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .mobile-menu.active .nav-link:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .mobile-menu.active .nav-link:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .mobile-menu.active .nav-link:nth-child(4) {
+        transition-delay: 0.4s;
     }
 }
 
@@ -287,6 +324,12 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.hero-right img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 /* Tagline */
@@ -363,12 +406,13 @@ main {
 /* Description */
 /* Description */
 .hero-description {
-    font-size: 1.1rem;
-    color: #666;
+    font-size: 1.3rem;
+    color: var(--color-text);
     line-height: 1.6;
     margin-bottom: 3rem;
     max-width: 500px;
     min-height: 3em;
+    font-weight: 900;
     /* Prevent layout shift */
     border-left: 1px solid #e0e0e0;
     /* Description vertical line */
@@ -472,7 +516,7 @@ main {
 .ticker-section {
     background-color: transparent;
     /* Remove black background */
-    color: rgb(209 213 219 / var(--tw-text-opacity, 1));
+    color: rgb(209 213 219 / var(--color-text, 1));
     /* Requested text color */
     padding: 2rem 0;
     overflow: hidden;
@@ -502,13 +546,13 @@ main {
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.05em;
-    color: rgb(209 213 219 / var(--tw-text-opacity, 1));
+    color: rgb(209 213 219 / var(--color-text, 1));
     /* Light grey */
     text-transform: uppercase;
 }
 
 .ticker-content .dot {
-    color: rgb(209 213 219 / var(--tw-text-opacity, 1));
+    color: rgb(209 213 219 / var(--color-text, 1));
     font-size: 1.2rem;
 }
 
@@ -536,14 +580,21 @@ main {
         gap: 3rem;
     }
 
+    .hero-right img {
+        max-width: 50%;
+        /* Reduce size on mobile */
+    }
+
     .hero-headline {
-        font-size: 3rem;
+        font-size: 2rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
     }
 
     .hero-right {
-        order: -1;
-        /* Optional: Move image to top on mobile?? Design usually keeps text first, letting stick to default */
-        /* Actually, usually hero text is first. Letting it be. */
+        order: initial;
     }
 
     .image-placeholder {
@@ -3111,4 +3162,38 @@ main {
     color: var(--color-text, #000000);
     font-size: 0.875rem;
     opacity: 0.7;
+}
+
+/* Floating Contact Button */
+.floating-contact-btn {
+    display: none;
+    position: fixed;
+    bottom: calc(50px + env(safe-area-inset-bottom));
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    /* Ensure it's on top of everything */
+    transition: background-color 0.3s;
+}
+
+.floating-contact-btn:hover {
+    background-color: #7d7ce0;
+    transform: scale(1.05);
+}
+
+.floating-contact-btn:active {
+    transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+    .floating-contact-btn {
+        display: flex;
+    }
 }
