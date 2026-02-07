@@ -397,4 +397,61 @@ document.addEventListener('DOMContentLoaded', () => {
             statsObserver.observe(stat);
         });
     }
+    /* =========================================
+       Contact Modal Logic
+       ========================================= */
+    const contactModal = document.getElementById('contactModal');
+    const contactForm = document.getElementById('contactForm');
+    const closeModalBtn = document.querySelector('.close-modal');
+    // Select both desktop and mobile CTA buttons, and the floating button
+    const contactBtns = document.querySelectorAll('.cta-button, .floating-contact-btn');
+
+    if (contactModal) {
+        // Open Modal
+        contactBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                contactModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Disable background scroll
+            });
+        });
+
+        // Close Modal
+        const closeModal = () => {
+            contactModal.classList.remove('active');
+            document.body.style.overflow = ''; // Enable background scroll
+        };
+
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', closeModal);
+        }
+
+        // Close on Outside Click
+        window.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                closeModal();
+            }
+        });
+
+        // Handle Form Submission
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const company = document.getElementById('company').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const remark = document.getElementById('remark').value;
+
+                // Basic Validation (HTML5 'required' handles most)
+                if (name && company && email && phone) {
+                    alert(`Thank you, ${name}! We have received your query.\n\nCompany: ${company}\nEmail: ${email}\nPhone: ${phone}\nRemark: ${remark}`);
+                    contactForm.reset();
+                    closeModal();
+                } else {
+                    alert('Please fill in all mandatory fields.');
+                }
+            });
+        }
+    }
 });
