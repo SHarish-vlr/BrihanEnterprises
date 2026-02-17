@@ -1400,7 +1400,7 @@ main {
     }
 
     .hero-about {
-        background-size: 60% 50%;
+        background-size: 150% 60%;
     }
 
     .md-name {
@@ -3066,7 +3066,7 @@ main {
 
 .blog-tab:hover,
 .blog-tab.active {
-    color: var(--color-bg);
+    color: var(--color-primary);
     /* Primary color */
     font-weight: 600;
     padding: 10px;
@@ -3243,6 +3243,14 @@ main {
 
     .blog-tab {
         font-size: 0.9rem;
+    }
+
+    .blog-tab:hover,
+    .blog-tab.active {
+        color: var(--color-bg);
+        /* Primary color */
+        font-weight: 600;
+        padding: 10px;
     }
 }
 
